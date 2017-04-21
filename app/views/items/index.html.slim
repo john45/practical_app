@@ -9,9 +9,9 @@ table
       th
       th
 
-  tbody
+  tbody#sortable
     - @items.each do |item|
-      tr
+      tr class='ui-state-default' id=item.id
         td = item.name
         td = item.done
         td = link_to 'Show', item

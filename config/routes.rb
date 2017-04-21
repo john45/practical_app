@@ -1,6 +1,5 @@
 PracticalApp::Application.routes.draw do
-  resources :items
-
-
+  get '/' => 'items#index'
+  root to: 'items#index'
   resources :items
 end
