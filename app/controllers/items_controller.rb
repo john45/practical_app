@@ -53,6 +53,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def sorting
+    params[:items].each_with_index do |value, index|
+      Item.find(value.to_i).update_attributes(position: index.to_i+1)
+    end
+  end
+
   # PUT /items/1
   # PUT /items/1.json
   def update

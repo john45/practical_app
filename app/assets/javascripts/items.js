@@ -2,22 +2,36 @@ $(document).ready(function(){
   $( "#sortable" ).sortable({
     placeholder: "ui-state-highlight"
   });
+  $( "#sortable" ).sortable({
+    update: function( update, ui ) {
+      var $sortableList = $("#sortable");
+      var listElements = $sortableList.children();
+
+      var listValues = [];
+
+      listElements.each(function(element){
+          listValues.push($( this ).attr('id'));
+      });
+
+      // $.ajax({
+      //   url: '/items',
+      //   type: 'PUT',
+      //   data: listValues,
+      //   text: listValues,
+      //   success: function(result) {
+      //     alert('All good!')
+      //   }
+      // });
+      $.post("items/sorting", { "items": listValues } );
+
+      console.log(listValues);
+      // alert(listElements);
+    }
+  });
+
   $( "#sortable" ).disableSelection();
 
-  $( "#sortable" ).sortable({
-      // update: function( update, ui ) {
-      //   // alert('dsf');
-      //   $.ajax({
-      //     type: "PATCH",
-      //     url: "/products",
-      //     data: { product: { name: "Filip", description: "whatever" } },
-      //     success:(data) ->
-      //       alert data.id
-      //       return false
-      //     error:(data) ->
-      //       return false
-      //   });
-      // }
-    });
-
 });
+    //   var order = $('#sortable').sortable('serialize');
+    //   alert(order);
+    // }
